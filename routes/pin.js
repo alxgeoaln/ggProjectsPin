@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var Pin = require('../model/pin.js');
+var ensureAuthorized = require('../ensureAuthorized/ensureAuthorized.js');
 
-router.post('/',function(req, res){
+router.post('/', ensureAuthorized, function(req, res){
  var pinObj = {
-     authorId : req.body.userID,
+     token : req.body.token,
      latitude : req.body.latitude,
      longitude : req.body.longitude
  };
@@ -22,7 +23,7 @@ router.post('/',function(req, res){
 
 });
 
-router.get('/', function(req, res){
+router.get('/', ensureAuthorized, function(req, res){
     Pin.find({}, function(err, pin){
         if(err){
             console.log(err);
