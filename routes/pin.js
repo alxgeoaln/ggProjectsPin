@@ -15,9 +15,9 @@ function ensureAuthorized(req, res, next) {
     }
 }
 
-router.post('/', ensureAuthorized, function(req, res){
+router.post('/:_id', ensureAuthorized, function(req, res){
  var pinObj = {
-     userID : req.body.userID,
+     userID : req.params._id,
      latitude : req.body.latitude,
      longitude : req.body.longitude
  };
