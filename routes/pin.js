@@ -15,31 +15,43 @@ function ensureAuthorized(req, res, next) {
     }
 }
 
-router.post('/', ensureAuthorized, function(req, res){
- var pinObj = {
-     userID : req.body.userID,
-     latitude : req.body.latitude,
-     longitude : req.body.longitude
- };
+router.post('/', ensureAuthorized, function (req, res) {
+    var pinObj = {
+        userID: req.body.userID,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude
+    };
 
-    console.log(pinObj.userID);
-
-    var pin = new Pin({ authorId: pinObj.userID, latitude: pinObj.latitude, longitude: pinObj.longitude });
-    pin.save(function (err) {
+    Pin.findOne({latitude: pinObj.latitude, longitude: pinObj.longitude}, function (err, pin) {
         if (err) {
-            console.log(err);
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            })
         } else {
-            console.log('pin saved');
-            res.json('json');
+            if (pin) {
+                res.json({
+                    type: false,
+                    data: 'Pin already exists!'
+                });
+            } else {
+                var pin = new Pin({authorId: pinObj.userID, latitude: pinObj.latitude, longitude: pinObj.longitude});
+                pin.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('pin saved');
+                        res.json('json');
+                    }
+                });
+            }
         }
-    });
-
-
+    })
 });
 
-router.get('/', ensureAuthorized, function(req, res){
-    Pin.find({}, function(err, pin){
-        if(err){
+router.get('/', ensureAuthorized, function (req, res) {
+    Pin.find({}, function (err, pin) {
+        if (err) {
             console.log(err);
         } else {
             res.json(pin);

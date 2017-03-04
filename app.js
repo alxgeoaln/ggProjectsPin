@@ -23,13 +23,6 @@ app.use(morgan("dev"));
 //Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use(function(req, res, next) {
-//    res.setHeader('Access-Control-Allow-Origin', '*');
-//    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-//    next();
-//});
-
 var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
