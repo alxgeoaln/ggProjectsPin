@@ -35,7 +35,8 @@ router.post('/', ensureAuthorized, function (req, res) {
                     type: false,
                     data: 'Pin already exists!'
                 });
-            } else {
+            }
+            else {
                 var pin = new Pin({authorId: pinObj.userID, latitude: pinObj.latitude, longitude: pinObj.longitude});
                 pin.save(function (err) {
                     if (err) {
@@ -63,10 +64,6 @@ router.get('/', ensureAuthorized, function (req, res) {
             });
         }
     })
-
-
-
-    });
 });
 
 
