@@ -51,20 +51,20 @@ router.post('/', ensureAuthorized, function (req, res) {
     })
 });
 
-router.get('/', ensureAuthorized, function (req, res) {
-    Pin.find({}, function (err, pin) {
+router.get('/',ensureAuthorized, function (req, res) {
+    Pin.find({}, function (err, pins) {
         if (err) {
             console.log(err);
         } else {
-            res.json({
-                coords : {
-                    pin : pin
-                }
+
+            pins.map(function (pin) {
+                pin.coords = {latitude: pin.latitude, longitude: pin.longitude}
             });
+            res.json(pins);
+
         }
     })
 });
-
 
 
 module.exports = router;
