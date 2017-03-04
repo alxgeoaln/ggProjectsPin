@@ -15,9 +15,9 @@ function ensureAuthorized(req, res, next) {
     }
 }
 
-router.post('/:_id', ensureAuthorized, function(req, res){
+router.post('/', ensureAuthorized, function(req, res){
  var pinObj = {
-     userID : req.params._id,
+     userID : req.body.userID,
      latitude : req.body.latitude,
      longitude : req.body.longitude
  };
@@ -28,7 +28,7 @@ router.post('/:_id', ensureAuthorized, function(req, res){
             console.log(err);
         } else {
             console.log('pin saved');
-            res.redirect('/');
+            res.json('json');
         }
     });
 
