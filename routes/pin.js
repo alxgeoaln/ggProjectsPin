@@ -1,7 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var Pin = require('../model/pin.js');
-var ensureAuthorized = require('../ensureAuthorized/ensureAuthorized.js');
+
+function ensureAuthorized(req, res, next) {
+    var bearerToken;
+    var bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+        var bearer = bearerHeader.split(" ");
+        bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.send(403);
+    }
+}
 
 router.post('/', ensureAuthorized, function(req, res){
  var pinObj = {
