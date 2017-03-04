@@ -58,8 +58,7 @@ router.get('/', ensureAuthorized, function (req, res) {
         } else {
             res.json({
                 coords : {
-                    latitude : pin.latitude,
-                    longitude : pin.longitude
+                    pin : pin
                 }
             });
         }
