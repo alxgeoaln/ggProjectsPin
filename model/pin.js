@@ -2,7 +2,7 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var PinSchema   = new Schema({
-    userID : String,
+    authorId : String,
     latitude : String,
     longitude : String
 });
