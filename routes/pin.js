@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Pin = require('../model/pin.js');
+var User = require('../model/user.js');
 
 function ensureAuthorized(req, res, next) {
     var bearerToken;
@@ -54,9 +55,20 @@ router.get('/', ensureAuthorized, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.json(pin);
+            res.json({
+                coords : {
+                    latitude : pin.latitude,
+                    longitude : pin.longitude
+                }
+            });
         }
     })
+
+
+
+    });
 });
+
+
 
 module.exports = router;
