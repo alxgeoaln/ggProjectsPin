@@ -86,8 +86,8 @@
       <file leaf-file-name="pin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/pin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5620609">
-              <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.42154565">
+              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -431,8 +431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/pin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5620609">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.42154565">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
           <folding />
         </state>
       </provider>

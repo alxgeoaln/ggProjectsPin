@@ -22,6 +22,8 @@ router.post('/', ensureAuthorized, function(req, res){
      longitude : req.body.longitude
  };
 
+    console.log(pinObj.userID);
+
     var pin = new Pin({ authorId: pinObj.userID, latitude: pinObj.latitude, longitude: pinObj.longitude });
     pin.save(function (err) {
         if (err) {
