@@ -6,29 +6,29 @@ var router = express.Router();
 var User = require('../model/user.js');
 
 //#region Upload img
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, '../uploads/')
-    },
-    filename: function (req, file, callback) {
-        callback(null, Date.now() + file.originalname);
-    }
-});
-var upload = multer({
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-
-        var filetypes = /jpeg|jpg|png/;
-        var mimetype = filetypes.test(file.mimetype);
-        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-
-        if (mimetype && extname) {
-            return cb(null, true);
-        }
-        console.log('Format fisier neacceptat');
-        cb("Error: File upload only supports the following filetypes - " + filetypes);
-    }
-});
+//var storage = multer.diskStorage({
+//    destination: function (req, file, callback) {
+//        callback(null, '../uploads/')
+//    },
+//    filename: function (req, file, callback) {
+//        callback(null, Date.now() + file.originalname);
+//    }
+//});
+//var upload = multer({
+//    storage: storage,
+//    fileFilter: function (req, file, cb) {
+//
+//        var filetypes = /jpeg|jpg|png/;
+//        var mimetype = filetypes.test(file.mimetype);
+//        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+//
+//        if (mimetype && extname) {
+//            return cb(null, true);
+//        }
+//        console.log('Format fisier neacceptat');
+//        cb("Error: File upload only supports the following filetypes - " + filetypes);
+//    }
+//});
 //#endregions
 
 var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
