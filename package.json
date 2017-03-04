@@ -9,6 +9,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "*",
+    "cors": "^2.8.1",
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "*",
