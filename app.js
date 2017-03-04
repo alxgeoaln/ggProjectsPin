@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var path = require('path');
 var bodyParser = require('body-parser');
 var morgan     = require("morgan");
-var cros = require('cors');
+var cors = require('cors');
 mongoose.connect('mongodb://sa:ggprojects4dev@ds029585.mlab.com:29585/pin');
 
 
