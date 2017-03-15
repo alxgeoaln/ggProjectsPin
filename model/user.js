@@ -1,12 +1,20 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var UserSchema   = new Schema({
+var PinSchema = new Schema({
+    coords: {
+        latitude: String,
+        longitude: String
+    }
+});
+
+
+var UserSchema = new Schema({
     email: String,
     password: String,
     profilePicture: String,
     token: String,
-    //pin: [{type: mongoose.Schema.Types.ObjectId, ref: 'Pin'}]
+    pin: [PinSchema]
 });
 
 module.exports = mongoose.model('User', UserSchema);

@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var morgan     = require("morgan");
 var cors = require('cors');
 mongoose.connect('mongodb://sa:ggprojects4dev@ds029585.mlab.com:29585/pin');
-
+//mongoose.connect('mongodb://localhost/pin');
 
 //Init App
 var app = express();

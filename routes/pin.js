@@ -16,50 +16,33 @@ function ensureAuthorized(req, res, next) {
     }
 }
 
-router.post('/', ensureAuthorized, function (req, res) {
+router.post('/', function (req, res) {
+
+    var userID = req.body.userID;
     var pinObj = {
-        userID: req.body.userID,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude
+        coords: {
+            latitude: req.body.latitude,
+            longitude: req.body.longitude
+        }
+
     };
 
-    Pin.findOne({latitude: pinObj.latitude, longitude: pinObj.longitude}, function (err, pin) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            })
-        } else {
-            if (pin) {
-                res.json({
-                    type: false,
-                    data: 'Pin already exists!'
-                });
-            }
-            else {
-                var pin = new Pin({authorId: pinObj.userID, latitude: pinObj.latitude, longitude: pinObj.longitude});
-                pin.save(function (err) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('pin saved');
-                        res.json('json');
-                    }
-                });
-            }
-        }
-    })
+
+    User.update({_id: userID},
+        {$push: {'pin': pinObj}}, {upsert: true}, function (err, data) {
+            if (err) console.log(err);
+
+            res.json('works')
+        });
+
 });
 
-router.get('/',ensureAuthorized, function (req, res) {
-    Pin.find({}, function (err, pins) {
+router.get('/', function (req, res) {
+    var query = User.find({}).select({"email": 1, "pin": 1, "_id": 1});
+    query.exec(function (err, pins) {
         if (err) {
             console.log(err);
         } else {
-
-            pins.map(function (pin) {
-                pin.coords = {latitude: pin.latitude, longitude: pin.longitude}
-            });
             res.json(pins);
 
         }
