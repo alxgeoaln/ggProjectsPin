@@ -5,7 +5,8 @@ var PinSchema = new Schema({
     coords: {
         latitude: String,
         longitude: String
-    }
+    },
+    userId: String
 });
 
 

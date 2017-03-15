@@ -22,7 +22,8 @@ router.post('/', function (req, res) {
         coords: {
             latitude: req.body.latitude,
             longitude: req.body.longitude
-        }
+        },
+        userId: userID
 
     };
 
